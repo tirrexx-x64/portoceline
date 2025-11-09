@@ -166,26 +166,8 @@ a {
 }
 
 .hero-title {
+    display: inline-block;
     position: relative;
-    display: block;
-}
-
-.hero-title-placeholder,
-.hero-title-typed {
-    display: block;
-    white-space: pre-wrap;
-}
-
-.hero-title-placeholder {
-    visibility: hidden;
-    pointer-events: none;
-    user-select: none;
-}
-
-.hero-title-typed {
-    position: absolute;
-    inset: 0;
-    color: inherit;
 }
 
 .hero-title .cursor {
