@@ -254,15 +254,12 @@ a {
 }
 
 .hero-portrait img {
-    display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
-    border-radius: calc(var(--radius-lg) - 6px);
+    object-fit: contain;
     filter: drop-shadow(0 24px 28px rgba(7, 21, 33, 0.25));
     animation: heroFloat 6s ease-in-out 1.2s infinite;
     will-change: transform;
-    background-color: transparent;
 }
 
 .hero-portrait::after {
@@ -412,7 +409,7 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=900&q=80') center/cover;
+    background: url('https://ibb.co.com/CsJTgkcc') center/cover;
     opacity: 0.4;
 }
 
