@@ -237,28 +237,42 @@ a {
     background: rgba(255, 255, 255, 0.82);
     box-shadow: var(--shadow-soft);
     position: relative;
-    overflow: hidden;
-    padding: 1rem;
+    overflow: visible;
+    padding: 1.25rem 1rem 0;
 }
 
 .hero-portrait {
     position: absolute;
-    inset: 1.2rem;
+    inset: 0.75rem 1.25rem 0;
     border-radius: var(--radius-lg);
-    background: linear-gradient(160deg, rgba(17, 91, 45, 0.92), rgba(7, 21, 33, 0.92));
-    mask: radial-gradient(circle at 50% 25%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 38%, rgba(0,0,0,1) 55%);
-    animation: riseIn 1.4s ease-out forwards;
-    transform: translateY(40px);
+    background: transparent;
+    animation: riseIn 1.2s ease-out forwards;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
 }
 
-.hero-portrait::before {
+.hero-portrait img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 28px rgba(7, 21, 33, 0.25));
+    animation: heroFloat 6s ease-in-out 1.2s infinite;
+    will-change: transform;
+}
+
+.hero-portrait::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: url('https://media.licdn.com/dms/image/v2/D5603AQGxYDqcc_N52Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731512326780?e=1764201600&v=beta&t=CoK2DcSDH-8h7fTfpWNXqC9QPW74CZ045dht3ohmMns') center/cover;
-    /* mix-blend-mode: lighten; ← HAPUS */
-    opacity: 0.85;
-    border-radius: inherit;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 36px;
+    background: radial-gradient(circle, rgba(7, 21, 33, 0.2), rgba(7, 21, 33, 0));
+    filter: blur(12px);
+    opacity: 0.55;
 }
 
 .hero-orb {
@@ -281,6 +295,15 @@ a {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes heroFloat {
+    0%, 100% {
+        transform: translateY(16px);
+    }
+    50% {
+        transform: translateY(-8px);
     }
 }
 
