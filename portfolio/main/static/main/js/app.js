@@ -119,3 +119,65 @@ if (heroBadges) {
         sparkle.classList.add('animate');
     }, 2500);
 }
+
+// Hero title typing animation
+function initHeroTyping() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (!heroTitle) return;
+    if (heroTitle.dataset.typingInitialized === 'true') return;
+
+    const fullText = heroTitle.textContent.trim();
+    if (!fullText) return;
+
+    heroTitle.dataset.typingInitialized = 'true';
+    heroTitle.setAttribute('aria-label', fullText);
+    heroTitle.textContent = '';
+
+    const placeholder = document.createElement('span');
+    placeholder.className = 'hero-title-placeholder';
+    placeholder.textContent = fullText;
+    placeholder.setAttribute('aria-hidden', 'true');
+
+    const typedOutput = document.createElement('span');
+    typedOutput.className = 'hero-title-typed';
+
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+
+    heroTitle.append(placeholder, typedOutput);
+    typedOutput.appendChild(cursor);
+
+    const punctuationPause = {
+        ',': 180,
+        '.': 260,
+        '!': 260,
+        '?': 260,
+        ';': 200,
+        ':': 200
+    };
+
+    let index = 0;
+
+    function typeNextCharacter() {
+        if (index >= fullText.length) {
+            cursor.classList.add('done');
+            setTimeout(() => cursor.remove(), 600);
+            return;
+        }
+
+        const character = fullText[index];
+        typedOutput.insertBefore(document.createTextNode(character), cursor);
+        index += 1;
+
+        const delay = punctuationPause[character] ?? (character === ' ' ? 40 : 70);
+        setTimeout(typeNextCharacter, delay);
+    }
+
+    setTimeout(typeNextCharacter, 450);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroTyping);
+} else {
+    initHeroTyping();
+}

@@ -163,10 +163,45 @@ a {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.2;
     margin: 1rem 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid var(--ui-yellow);
-    animation: typing 5s steps(80, end) 0.5s forwards, blink 1s infinite 5.5s;
+}
+
+.hero-title {
+    position: relative;
+    display: block;
+}
+
+.hero-title-placeholder,
+.hero-title-typed {
+    display: block;
+    white-space: pre-wrap;
+}
+
+.hero-title-placeholder {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero-title-typed {
+    position: absolute;
+    inset: 0;
+    color: inherit;
+}
+
+.hero-title .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    margin-left: 0.2rem;
+    background: var(--ui-yellow);
+    animation: blink 1s steps(2, start) infinite;
+    vertical-align: text-bottom;
+    border-radius: 999px;
+}
+
+.hero-title .cursor.done {
+    animation: none;
+    opacity: 0;
 }
 
 .hero-subtitle {
@@ -342,21 +377,12 @@ a {
     }
 }
 
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
 @keyframes blink {
     0%, 50% {
-        border-color: var(--ui-yellow);
+        opacity: 1;
     }
     51%, 100% {
-        border-color: transparent;
+        opacity: 0;
     }
 }
 
