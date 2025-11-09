@@ -163,6 +163,10 @@ a {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.2;
     margin: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--ui-yellow);
+    animation: typing 5s steps(80, end) 0.5s forwards, blink 1s infinite 5.5s;
 }
 
 .hero-subtitle {
@@ -231,34 +235,35 @@ a {
 }
 
 .hero-frame {
-    width: min(320px, 80vw);
-    height: min(420px, 90vw);
+    width: min(450px, 90vw);
+    height: min(580px, 100vw);
     border-radius: var(--radius-xl);
-    background: rgba(255, 255, 255, 0.82);
+    background: var(--bg-gradient);
     box-shadow: var(--shadow-soft);
     position: relative;
     overflow: visible;
-    padding: 1.25rem 1rem 0;
+    padding: 1.25rem;
+    animation: frameFloat 6s ease-in-out 1.2s infinite;
 }
 
 .hero-portrait {
     position: absolute;
-    inset: 0.75rem 1.25rem 0;
-    border-radius: var(--radius-lg);
+    inset: 1rem;
+    border-radius: calc(var(--radius-xl) - 0.5rem);
     background: transparent;
-    animation: riseIn 1.2s ease-out forwards;
+    animation: riseIn 1.2s ease-out forwards, subtleFloat 4s ease-in-out 1.2s infinite;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     overflow: visible;
 }
 
 .hero-portrait img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
     filter: drop-shadow(0 24px 28px rgba(7, 21, 33, 0.25));
-    animation: heroFloat 6s ease-in-out 1.2s infinite;
     will-change: transform;
 }
 
@@ -290,7 +295,7 @@ a {
 @keyframes riseIn {
     0% {
         opacity: 0;
-        transform: translateY(60px);
+        transform: translateY(120px);
     }
     100% {
         opacity: 1;
@@ -313,6 +318,45 @@ a {
     }
     50% {
         transform: translateY(10px);
+    }
+}
+
+@keyframes subtleFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    33% {
+        transform: translateY(-8px) rotate(1deg) scale(1.02);
+    }
+    66% {
+        transform: translateY(3px) rotate(-0.5deg) scale(0.98);
+    }
+}
+
+@keyframes frameFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.05);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        border-color: var(--ui-yellow);
+    }
+    51%, 100% {
+        border-color: transparent;
     }
 }
 
