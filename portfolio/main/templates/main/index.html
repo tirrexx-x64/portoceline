@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celine Aurel Asyela | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="brand">
+            <span class="brand-mark">CA</span>
+            <span class="brand-name">Celine Aurel Asyela</span>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#testimonials" class="nav-link">Testimonials</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#blog" class="nav-link">Blog</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero section">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Product Designer &amp; Researcher</p>
+                <h1>Crafting meaningful digital experiences with empathy and precision.</h1>
+                <p class="hero-subtitle">
+                    Hi, I’m Celine – a UI/UX designer, storyteller, and lifelong learner from Universitas Indonesia,
+                    passionate about weaving technology with human-centered design.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="#portfolio">Explore Portfolio</a>
+                    <a class="btn ghost" href="#contact">Let’s Collaborate</a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">UI/UX</span>
+                    <span class="badge">Design Systems</span>
+                    <span class="badge">Product Strategy</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-frame">
+                    <div class="hero-portrait">
+                        <img src="https://pngimg.com/d/business_woman_PNG18471.png" alt="Portrait of Celine Aurel Asyela" loading="lazy">
+                    </div>
+                </div>
+                <div class="hero-orb"></div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="section-heading">
+                <span class="section-eyebrow">About Me</span>
+                <h2>Rooted in science, thriving in design.</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-summary reveal">
+                    <p>
+                        As a final-year student at Universitas Indonesia, I fuse academic rigor with real-world product design.
+                        My approach pairs data-informed insights with storytelling, ensuring every interface feels intuitive,
+                        inclusive, and delightful.
+                    </p>
+                    <p>
+                        Beyond the studio, I mentor junior designers, co-host a design critique circle, and explore
+                        contemporary art for inspiration. I thrive in collaborative environments where bold ideas meet
+                        thoughtful execution.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-value">25+</span>
+                            <span class="stat-label">Products crafted</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Design awards &amp; hackathons</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">Years of experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-highlights reveal">
+                    <article class="highlight-card">
+                        <h3>Design Philosophy</h3>
+                        <p>
+                            Human-centered, research-backed, and inspired by the spirit of Universitas Indonesia –
+                            bridging tradition with modern innovation.
+                        </p>
+                    </article>
+                    <article class="highlight-card">
+                        <h3>Skillset</h3>
+                        <ul>
+                            <li>Design systems &amp; prototyping</li>
+                            <li>UX research &amp; facilitation</li>
+                            <li>Front-end collaboration</li>
+                            <li>Inclusive &amp; accessible design</li>
+                        </ul>
+                    </article>
+                    <article class="highlight-card">
+                        <h3>Currently exploring</h3>
+                        <p>
+                            Motion design for micro-interactions and AI-assisted workflows that amplify creativity.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section portfolio">
+            <div class="section-heading">
+                <span class="section-eyebrow">Selected Work</span>
+                <h2>Projects that showcase empathy, strategy, and craft.</h2>
+            </div>
+            <div class="portfolio-grid">
+                <article class="project-card reveal">
+                    <div class="project-media">
+                        <span class="project-tag">UX Research</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Healmate Telehealth Platform</h3>
+                        <p>
+                            Led a comprehensive discovery sprint that increased patient adherence by 38% through
+                            personalized care pathways and adaptive dashboards.
+                        </p>
+                        <a href="#" class="project-link">View case study</a>
+                    </div>
+                </article>
+                <article class="project-card reveal">
+                    <div class="project-media">
+                        <span class="project-tag">Design Systems</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>GarudaPay Financial OS</h3>
+                        <p>
+                            Designed a scalable design system for a fintech super-app, empowering teams across 5 countries
+                            with consistent UI patterns and documentation.
+                        </p>
+                        <a href="#" class="project-link">View case study</a>
+                    </div>
+                </article>
+                <article class="project-card reveal">
+                    <div class="project-media">
+                        <span class="project-tag">Product Strategy</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>UI Smart Campus Portal</h3>
+                        <p>
+                            Built a student journey map and MVP experience that unified campus services, reducing
+                            administrative friction by 54% for 12,000+ users.
+                        </p>
+                        <a href="#" class="project-link">View case study</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section testimonials">
+            <div class="section-heading">
+                <span class="section-eyebrow">Testimonials</span>
+                <h2>Words from collaborators and mentors.</h2>
+            </div>
+            <div class="testimonial-slider">
+                <button class="slider-control prev" aria-label="Previous testimonial">&#10094;</button>
+                <div class="slider-track">
+                    <article class="testimonial-card">
+                        <p>
+                            “Celine brings a refreshing balance of analytical thinking and storytelling. Her leadership in
+                            our telehealth redesign transformed patient journeys and team dynamics alike.”
+                        </p>
+                        <h3>Dr. Ratna Pratiwi</h3>
+                        <span>Chief Medical Officer, Healmate</span>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>
+                            “Her design system work elevated our product velocity. Celine anticipates needs, communicates
+                            clearly, and inspires confidence across engineering and product teams.”
+                        </p>
+                        <h3>Kevin Santoso</h3>
+                        <span>Head of Product Design, GarudaPay</span>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>
+                            “Celine continuously champions accessibility and inclusion. Her mentorship shaped an entire
+                            cohort of student designers into thoughtful practitioners.”
+                        </p>
+                        <h3>Nadia Lestari</h3>
+                        <span>Design Lead, UI/UX Lab UI</span>
+                    </article>
+                </div>
+                <button class="slider-control next" aria-label="Next testimonial">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="experience" class="section experience">
+            <div class="section-heading">
+                <span class="section-eyebrow">Experience &amp; Achievements</span>
+                <h2>Celebrating milestones from campus to industry.</h2>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item reveal">
+                    <span class="timeline-year">2024</span>
+                    <h3>Champion – UI/UX Innovators League</h3>
+                    <p>Redesigned the university’s academic portal with accessibility-first principles and motion design.</p>
+                </article>
+                <article class="timeline-item reveal">
+                    <span class="timeline-year">2023</span>
+                    <h3>Product Design Intern – Tokopedia</h3>
+                    <p>Shipped new merchant analytics dashboards and facilitated cross-functional design critiques.</p>
+                </article>
+                <article class="timeline-item reveal">
+                    <span class="timeline-year">2022</span>
+                    <h3>Best Speaker – ASEAN Design Symposium</h3>
+                    <p>Presented research on culturally responsive UI patterns for Southeast Asian audiences.</p>
+                </article>
+                <article class="timeline-item reveal">
+                    <span class="timeline-year">2021</span>
+                    <h3>First Runner-up – Hack UI for Good</h3>
+                    <p>Co-created an inclusive education platform integrating sign-language-first learning modules.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="blog" class="section blog">
+            <div class="section-heading">
+                <span class="section-eyebrow">Personal Blog</span>
+                <h2>Reflections on design, leadership, and growth.</h2>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card reveal">
+                    <span class="blog-date">Nov 2024</span>
+                    <h3>Designing with cultural nuance at Universitas Indonesia</h3>
+                    <p>How campus heritage informed a new generation of inclusive digital products.</p>
+                    <a href="#" class="blog-link">Read more</a>
+                </article>
+                <article class="blog-card reveal">
+                    <span class="blog-date">Sep 2024</span>
+                    <h3>Building motion systems that feel human</h3>
+                    <p>Crafting micro-interactions that amplify storytelling without overwhelming users.</p>
+                    <a href="#" class="blog-link">Read more</a>
+                </article>
+                <article class="blog-card reveal">
+                    <span class="blog-date">Jul 2024</span>
+                    <h3>Lessons from mentoring first-time designers</h3>
+                    <p>Design critiques, empathy, and empowering students to take creative risks.</p>
+                    <a href="#" class="blog-link">Read more</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="section-heading">
+                <span class="section-eyebrow">Let’s Connect</span>
+                <h2>Ready to co-create delightful experiences?</h2>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form reveal" autocomplete="on">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Let’s talk about your idea..."></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Send Message</button>
+                </form>
+                <div class="contact-info reveal">
+                    <div class="info-card">
+                        <h3>Reach me directly</h3>
+                        <p><strong>Email:</strong> celine.asyela@ui.ac.id</p>
+                        <p><strong>Phone:</strong> +62 812 3456 7890</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Social presence</h3>
+                        <ul class="social-links">
+                            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a></li>
+                            <li><a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a></li>
+                            <li><a href="https://medium.com" target="_blank" rel="noopener">Medium</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© {{ now|date:"Y" }} Celine Aurel Asyela. Crafted with passion in Depok.</p>
+            <a href="#home" class="back-to-top" aria-label="Back to top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="{% static 'main/js/app.js' %}"></script>
+</body>
+</html>
