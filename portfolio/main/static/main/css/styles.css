@@ -255,8 +255,8 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80') center/cover;
-    mix-blend-mode: lighten;
+    background: url('https://media.licdn.com/dms/image/v2/D5603AQGxYDqcc_N52Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731512326780?e=1764201600&v=beta&t=CoK2DcSDH-8h7fTfpWNXqC9QPW74CZ045dht3ohmMns') center/cover;
+    /* mix-blend-mode: lighten; ← HAPUS */
     opacity: 0.85;
     border-radius: inherit;
 }
