@@ -5,6 +5,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const revealElements = document.querySelectorAll('.reveal:not(.timeline-item)');
 const timelineSections = document.querySelectorAll('.timeline');
 const sliderTrack = document.querySelector('.slider-track');
+const sliderWindow = document.querySelector('.slider-window');
 const sliderCards = document.querySelectorAll('.testimonial-card');
 const prevButton = document.querySelector('.slider-control.prev');
 const nextButton = document.querySelector('.slider-control.next');
@@ -105,12 +106,9 @@ timelineSections.forEach(section => {
 
 // Testimonials slider logic
 function updateSlider(index) {
-    if (!sliderTrack || sliderCards.length === 0) return;
-    const cardWidth = sliderCards[0].offsetWidth + 24; // width + gap approximation
-    sliderTrack.scrollTo({
-        left: cardWidth * index,
-        behavior: 'smooth'
-    });
+    if (!sliderTrack || sliderCards.length === 0 || !sliderWindow) return;
+    const width = sliderWindow.offsetWidth;
+    sliderTrack.style.transform = `translateX(-${width * index}px)`;
 }
 
 function showNextSlide() {
@@ -134,15 +132,19 @@ prevButton?.addEventListener('click', () => {
 });
 
 function startSliderInterval() {
+    if (sliderCards.length <= 1) return;
     sliderInterval = setInterval(showNextSlide, 6000);
 }
 
 function restartSliderInterval() {
+    if (sliderCards.length <= 1) return;
     clearInterval(sliderInterval);
     startSliderInterval();
 }
 
-if (sliderCards.length > 0) {
+if (sliderCards.length > 0 && sliderWindow) {
+    updateSlider(sliderIndex);
+    window.addEventListener('resize', () => updateSlider(sliderIndex));
     startSliderInterval();
 }
 
@@ -169,52 +171,84 @@ if (heroBadges) {
     }, 2500);
 }
 
-// Hero title typing animation
-function initHeroTyping() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (!heroTitle) return;
+const punctuationPause = {
+    ',': 180,
+    '.': 260,
+    '!': 260,
+    '?': 260,
+    ';': 200,
+    ':': 200
+};
 
-    const fullText = heroTitle.textContent.trim();
+function startTyping(element, { startDelay = 350, keepCursor = false } = {}) {
+    if (!element) return;
+    const fullText = element.textContent.trim();
     if (!fullText) return;
 
-    heroTitle.setAttribute('aria-label', fullText);
-    heroTitle.textContent = '';
+    const rect = element.getBoundingClientRect();
+    element.style.minWidth = `${rect.width}px`;
+    element.style.minHeight = `${rect.height}px`;
+    element.classList.add('is-typing');
+
+    element.setAttribute('aria-label', fullText);
+    element.textContent = '';
 
     const cursor = document.createElement('span');
     cursor.className = 'cursor';
-    heroTitle.appendChild(cursor);
-
-    const punctuationPause = {
-        ',': 180,
-        '.': 260,
-        '!': 260,
-        '?': 260,
-        ';': 200,
-        ':': 200
-    };
+    element.appendChild(cursor);
 
     let index = 0;
 
     function typeNextCharacter() {
         if (index >= fullText.length) {
-            cursor.classList.add('done');
-            setTimeout(() => cursor.remove(), 600);
+            if (!keepCursor) {
+                cursor.classList.add('done');
+                setTimeout(() => cursor.remove(), 600);
+            }
+            element.classList.remove('is-typing');
+            element.style.minWidth = '';
+            element.style.minHeight = '';
             return;
         }
 
         const character = fullText[index];
-        heroTitle.insertBefore(document.createTextNode(character), cursor);
+        element.insertBefore(document.createTextNode(character), cursor);
         index += 1;
 
         const delay = punctuationPause[character] ?? (character === ' ' ? 40 : 70);
         setTimeout(typeNextCharacter, delay);
     }
 
-    setTimeout(typeNextCharacter, 450);
+    setTimeout(typeNextCharacter, startDelay);
+}
+
+function initHeroTyping() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (!heroTitle) return;
+    startTyping(heroTitle, { startDelay: 450 });
+}
+
+function initAboutTyping() {
+    const titles = document.querySelectorAll('.type-title');
+    if (titles.length === 0) return;
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            startTyping(entry.target, { startDelay: 0 });
+            obs.unobserve(entry.target);
+        });
+    }, { threshold: 0.4 });
+
+    titles.forEach(title => observer.observe(title));
+}
+
+function initTypingEffects() {
+    initHeroTyping();
+    initAboutTyping();
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroTyping);
+    document.addEventListener('DOMContentLoaded', initTypingEffects);
 } else {
-    initHeroTyping();
+    initTypingEffects();
 }
