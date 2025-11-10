@@ -1,7 +1,9 @@
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const navLinkItems = document.querySelectorAll('.nav-link');
-const revealElements = document.querySelectorAll('.reveal');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealElements = document.querySelectorAll('.reveal:not(.timeline-item)');
+const timelineSections = document.querySelectorAll('.timeline');
 const sliderTrack = document.querySelector('.slider-track');
 const sliderCards = document.querySelectorAll('.testimonial-card');
 const prevButton = document.querySelector('.slider-control.prev');
@@ -40,19 +42,66 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(section => sectionObserver.observe(section));
 
 // Reveal animations on scroll
-const revealObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            obs.unobserve(entry.target);
+if (prefersReducedMotion) {
+    revealElements.forEach(el => el.classList.add('in-view'));
+} else {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.25,
+        rootMargin: '0px 0px -10% 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+}
+
+timelineSections.forEach(section => {
+    const items = Array.from(section.querySelectorAll('.timeline-item'));
+
+    if (items.length === 0) {
+        return;
+    }
+
+    items.forEach((item, index) => {
+        item.style.setProperty('--timeline-order', index);
+
+        if (prefersReducedMotion) {
+            item.classList.add('in-view');
         }
     });
-}, {
-    threshold: 0.25,
-    rootMargin: '0px 0px -10% 0px'
-});
 
-revealElements.forEach(el => revealObserver.observe(el));
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const timelineObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+
+            const item = entry.target;
+            const order = Number(item.style.getPropertyValue('--timeline-order')) || 0;
+            const delay = Math.min(order, 6) * 140;
+
+            setTimeout(() => {
+                item.classList.add('in-view');
+            }, delay);
+
+            obs.unobserve(item);
+        });
+    }, {
+        threshold: 0.35,
+        rootMargin: '0px 0px -10% 0px'
+    });
+
+    items.forEach(item => timelineObserver.observe(item));
+});
 
 // Testimonials slider logic
 function updateSlider(index) {
