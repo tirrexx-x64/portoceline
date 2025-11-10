@@ -212,7 +212,32 @@
             </div>
             <div class="timeline">
                 <div class="timeline-label">Professional Experience</div>
-
+                {% for experience in experiences %}
+                <article class="timeline-item reveal">
+                    <div class="timeline-header">
+                        <span class="timeline-date">{{ experience.start_date|date:"M Y" }}{% if experience.end_date %} – {{ experience.end_date|date:"M Y" }}{% else %} – Present{% endif %}</span>
+                        <span class="timeline-meta">{{ experience.organization }}</span>
+                    </div>
+                    <div class="timeline-body">
+                        {% if experience.image %}
+                        <div class="timeline-logo">
+                            <img src="{{ experience.image.url }}" alt="{{ experience.organization }} logo" style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        {% else %}
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #d4f1bb, #8bd897);">
+                            <span aria-hidden="true">{{ experience.organization|slice:":2"|upper }}</span>
+                            <span class="sr-only">Logo placeholder for {{ experience.organization }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="timeline-content">
+                            <h3>{{ experience.title }}</h3>
+                            <p class="timeline-role">{{ experience.role }}</p>
+                            <p class="timeline-duration">{{ experience.start_date|date:"M Y" }} – {% if experience.end_date %}{{ experience.end_date|date:"M Y" }}{% else %}Present{% endif %}</p>
+                            <p>{{ experience.description }}</p>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
                 <article class="timeline-item reveal">
                     <div class="timeline-header">
                         <span class="timeline-date">Apr 2025 – Present</span>
