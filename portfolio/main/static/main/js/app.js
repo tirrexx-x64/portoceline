@@ -109,6 +109,13 @@ function updateSlider(index) {
     if (!sliderTrack || sliderCards.length === 0 || !sliderWindow) return;
     const width = sliderWindow.offsetWidth;
     sliderTrack.style.transform = `translateX(-${width * index}px)`;
+    sliderCards.forEach((card, cardIndex) => {
+        if (cardIndex === index) {
+            card.classList.add('in-view');
+        } else {
+            card.classList.remove('in-view');
+        }
+    });
 }
 
 function showNextSlide() {
@@ -224,8 +231,18 @@ function startTyping(element, { startDelay = 350, keepCursor = false } = {}) {
 
 function initHeroTyping() {
     const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
     if (!heroTitle) return;
-    startTyping(heroTitle, { startDelay: 450 });
+    const typingDelay = 450;
+    startTyping(heroTitle, { startDelay: typingDelay });
+
+    if (heroSubtitle && !prefersReducedMotion) {
+        heroSubtitle.classList.remove('slide-in');
+        heroSubtitle.classList.add('will-animate');
+        setTimeout(() => {
+            heroSubtitle.classList.add('slide-in');
+        }, typingDelay);
+    }
 }
 
 function initAboutTyping() {

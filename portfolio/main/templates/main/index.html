@@ -223,141 +223,175 @@
                 <h2>Economic initiatives and management experiments.</h2>
             </div>
             <div class="portfolio-grid">
-                <article class="project-card reveal">
+                <article class="project-card capital-card reveal">
                     <div class="project-media">
-                        <span class="project-tag">Capital Markets</span>
+                        <img src="{% static 'main/images/capital-markets.svg' %}" alt="Line chart showing capital market growth" class="project-visual" loading="lazy" decoding="async">
                     </div>
                     <div class="project-content">
                         <h3>ICMSS Youth Investor Journey</h3>
                         <p>
                             Designed a multi-channel communications funnel for The 25th ICMSS that guided students from curiosity to commitment, boosting investor education engagement by 40%.
                         </p>
-                        <a href="#" class="project-link">Review strategy note</a>
                     </div>
                 </article>
-                <article class="project-card reveal">
+                <article class="project-card intelligence-card reveal">
                     <div class="project-media">
-                        <span class="project-tag">Business Intelligence</span>
+                        <img src="{% static 'main/images/business-intel.svg' %}" alt="Business intelligence dashboard illustration" class="project-visual" loading="lazy" decoding="async">
                     </div>
                     <div class="project-content">
                         <h3>MSS FEB UI Insight Hub</h3>
                         <p>
                             Developed reporting rituals and lightweight dashboards so MSS FEB UI leaders could act on academic, marketing, and partnership data in weekly sprints.
                         </p>
-                        <a href="#" class="project-link">Open playbook</a>
                     </div>
                 </article>
-                <article class="project-card reveal">
+                <article class="project-card growth-card reveal">
                     <div class="project-media">
-                        <span class="project-tag">Growth Strategy</span>
+                        <img src="{% static 'main/images/growth-strategy.svg' %}" alt="Growth arrow and storytelling pathway graphic" class="project-visual" loading="lazy" decoding="async">
                     </div>
                     <div class="project-content">
                         <h3>IMOTION Public Relations Engine</h3>
                         <p>
                             Mapped PR touchpoints across Instagram, TikTok, LinkedIn, and on-ground events to turn IMOTION FEB UI into a living lab for storytelling and sponsorship conversions.
                         </p>
-                        <a href="#" class="project-link">See growth outline</a>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section id="testimonials" class="section testimonials">
-            <div class="section-heading">
-                <span class="section-eyebrow">Testimonials</span>
-                <h2>Words from collaborators and mentors.</h2>
+
+<section id="testimonials" class="section testimonials">
+    <div class="section-heading">
+        <span class="section-eyebrow">Testimonials</span>
+        <h2>Words from collaborators and mentors.</h2>
+    </div>
+    <div class="testimonial-slider">
+        <div class="slider-window">
+            <div class="slider-track">
+                {% if testimonials %}
+                    {% for testimonial in testimonials %}
+                        <article class="testimonial-card">
+                            <div class="testimonial-rating" aria-label="{{ testimonial.rating }} out of 5 stars">
+                                <span aria-hidden="true">
+                                    {% for _ in "12345"|make_list %}
+                                        {% if forloop.counter <= testimonial.rating %}
+                                            &#9733;
+                                        {% else %}
+                                            &#9734;
+                                        {% endif %}
+                                    {% endfor %}
+                                </span>
+                                <span class="testimonial-tag">{{ testimonial.focus_area }}</span>
+                            </div>
+                            <span class="testimonial-quote-icon" aria-hidden="true">&ldquo;</span>
+                            <p>
+                                {{ testimonial.quote|linebreaksbr }}
+                            </p>
+                            <div class="testimonial-person">
+                                <div class="testimonial-avatar">{{ testimonial.initials }}</div>
+                                <div>
+                                    <h3>{{ testimonial.name }}</h3>
+                                    <span>{{ testimonial.role }}{% if testimonial.organization %} &middot; {{ testimonial.organization }}{% endif %}</span>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                            <span class="testimonial-tag">Your story</span>
+                        </div>
+                        <span class="testimonial-quote-icon" aria-hidden="true">&ldquo;</span>
+                        <p>
+                            Jadilah orang pertama yang meninggalkan catatan untuk Celine. Ceritakan bagaimana kolaborasi kalian berjalan!
+                        </p>
+                        <div class="testimonial-person">
+                            <div class="testimonial-avatar">YOU</div>
+                            <div>
+                                <h3>Nama kamu</h3>
+                                <span>Role &middot; Organisasi</span>
+                            </div>
+                        </div>
+                    </article>
+                {% endif %}
             </div>
-            <div class="testimonial-slider">
-                <button class="slider-control prev" aria-label="Previous testimonial">&#10094;</button>
-                <div class="slider-window">
-                    <div class="slider-track">
-                        <article class="testimonial-card">
-                            <div class="testimonial-rating" aria-label="5 out of 5 stars">
-                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                <span class="testimonial-tag">Capital markets</span>
-                            </div>
-                            <p>
-                                &ldquo;Celine treats every deck like an investor briefing. Our student funds lab finally had a story that tied metrics to mission.&rdquo;
-                            </p>
-                            <div class="testimonial-person">
-                                <div class="testimonial-avatar">MS</div>
-                                <div>
-                                    <h3>Maria Siregar</h3>
-                                    <span>Advisor · FEB UI Student Entrepreneur Lab</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="testimonial-card">
-                            <div class="testimonial-rating" aria-label="5 out of 5 stars">
-                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                <span class="testimonial-tag">Business intelligence</span>
-                            </div>
-                            <p>
-                                &ldquo;Her BI rituals helped MSS FEB UI spot revenue leaks in hours, not weeks. Stakeholders finally made decisions with confidence.&rdquo;
-                            </p>
-                            <div class="testimonial-person">
-                                <div class="testimonial-avatar">RW</div>
-                                <div>
-                                    <h3>Rafi Wirawan</h3>
-                                    <span>Business Intelligence Lead · MSS FEB UI</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="testimonial-card">
-                            <div class="testimonial-rating" aria-label="5 out of 5 stars">
-                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                <span class="testimonial-tag">Sponsorship</span>
-                            </div>
-                            <p>
-                                &ldquo;During The 25th ICMSS, Celine orchestrated partner touchpoints that increased warm leads by 48%. The energy in the war room was unmatched.&rdquo;
-                            </p>
-                            <div class="testimonial-person">
-                                <div class="testimonial-avatar">NP</div>
-                                <div>
-                                    <h3>Nathania Prameswari</h3>
-                                    <span>Managing Director · ICMSS 2025</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="testimonial-card">
-                            <div class="testimonial-rating" aria-label="5 out of 5 stars">
-                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                <span class="testimonial-tag">Leadership</span>
-                            </div>
-                            <p>
-                                &ldquo;She mentors first-time analysts with the patience of a teacher and the rigor of a consultant. Our competition team matured overnight.&rdquo;
-                            </p>
-                            <div class="testimonial-person">
-                                <div class="testimonial-avatar">NL</div>
-                                <div>
-                                    <h3>Nadia Lestari</h3>
-                                    <span>Coach · National Economics Competition Team</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="testimonial-card">
-                            <div class="testimonial-rating" aria-label="5 out of 5 stars">
-                                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                <span class="testimonial-tag">Fundraising</span>
-                            </div>
-                            <p>
-                                &ldquo;Celine unlocked storytelling frameworks that helped Natal KMK UI talk to sponsors as partners, not donors. Targets were exceeded ahead of schedule.&rdquo;
-                            </p>
-                            <div class="testimonial-person">
-                                <div class="testimonial-avatar">DH</div>
-                                <div>
-                                    <h3>Dimas Herlambang</h3>
-                                    <span>Project Lead · Natal KMK UI 2024</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+        </div>
+        {% with testimonials|length as testimonial_count %}
+        <div class="slider-navigation">
+            <button class="slider-control prev" aria-label="Previous testimonial" {% if testimonial_count <= 1 %}disabled{% endif %}>
+                <span class="control-chevron" aria-hidden="true">&#10094;</span>
+                <span class="control-label">Previous</span>
+            </button>
+            <span class="slider-hint">Swipe to explore more stories</span>
+            <button class="slider-control next" aria-label="Next testimonial" {% if testimonial_count <= 1 %}disabled{% endif %}>
+                <span class="control-label">Next</span>
+                <span class="control-chevron" aria-hidden="true">&#10095;</span>
+            </button>
+        </div>
+                {% endwith %}
+            </div>
+            <div class="testimonial-form-panel">
+                <div class="form-panel-header">
+                    <h3 class="type-title type-title--testimonial">Tambahkan testimoni kamu</h3>
+                    <p>Bagikan pengalamanmu bekerja bersama Celine. Catatanmu membantu brand lain memahami dampaknya.</p>
                 </div>
-                <button class="slider-control next" aria-label="Next testimonial">&#10095;</button>
+                {% for message in messages %}
+                    {% if 'testimonial' in message.tags %}
+                        <div class="form-message-stack">
+                            <div class="form-message form-message--{{ message.level_tag }}">{{ message }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <form method="post" action="#testimonials" class="testimonial-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="testimonial">
+                    <div class="testimonial-form-grid">
+                        <label class="form-field">
+                            <span>Nama lengkap</span>
+                            {{ testimonial_form.name }}
+                            {% for error in testimonial_form.name.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                        <label class="form-field">
+                            <span>Peran atau jabatan</span>
+                            {{ testimonial_form.role }}
+                            {% for error in testimonial_form.role.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                        <label class="form-field">
+                            <span>Organisasi</span>
+                            {{ testimonial_form.organization }}
+                            {% for error in testimonial_form.organization.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                        <label class="form-field">
+                            <span>Fokus kolaborasi</span>
+                            {{ testimonial_form.focus_area }}
+                            {% for error in testimonial_form.focus_area.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                        <label class="form-field">
+                            <span>Rating</span>
+                            {{ testimonial_form.rating }}
+                            {% for error in testimonial_form.rating.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                        <label class="form-field form-field--full">
+                            <span>Testimoni</span>
+                            {{ testimonial_form.quote }}
+                            {% for error in testimonial_form.quote.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </label>
+                    </div>
+                    <button type="submit" class="btn primary form-submit">Kirim testimoni</button>
+                </form>
             </div>
         </section>
 
@@ -650,19 +684,16 @@
                     <span class="blog-date">Nov 2024</span>
                     Decoding Gen-Z investment behavior at FEB UI
                     Primary research takeaways from guiding 500+ students through their first capital market touchpoints.
-                    <a href="#" class="blog-link">Read more</a>
                 </article>
                 <article class="blog-card reveal">
                     <span class="blog-date">Sep 2024</span>
                     Turning student organizations into business laboratories
                     What MSS FEB UI taught me about designing governance, rituals, and data flows for agile teams.
-                    <a href="#" class="blog-link">Read more</a>
                 </article>
                 <article class="blog-card reveal">
                     <span class="blog-date">Jul 2024</span>
                     Story-driven fundraising for student movements
                     Frameworks I use to align partners, sponsors, and communities on transparent financial goals.
-                    <a href="#" class="blog-link">Read more</a>
                 </article>
             </div>
         </section>
@@ -673,18 +704,36 @@
                 <h2>Ready to grow your next business experiment?</h2>
             </div>
             <div class="contact-grid">
-                <form class="contact-form reveal" autocomplete="on">
+                <form class="contact-form reveal" method="post" action="#contact" autocomplete="on">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="contact">
+                    {% for message in messages %}
+                        {% if 'contact' in message.tags %}
+                            <div class="form-message-stack">
+                                <div class="form-message form-message--{{ message.level_tag }}">{{ message }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <label for="{{ contact_form.name.id_for_label }}">Name</label>
+                        {{ contact_form.name }}
+                        {% for error in contact_form.name.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        <label for="{{ contact_form.email.id_for_label }}">Email</label>
+                        {{ contact_form.email }}
+                        {% for error in contact_form.email.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Let&#39;s talk about your business challenge..."></textarea>
+                        <label for="{{ contact_form.message.id_for_label }}">Message</label>
+                        {{ contact_form.message }}
+                        {% for error in contact_form.message.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
                     </div>
                     <button type="submit" class="btn primary">Send Message</button>
                 </form>
