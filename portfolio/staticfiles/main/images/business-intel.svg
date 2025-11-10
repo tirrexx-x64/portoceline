@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="intel-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0328"/>
+      <stop offset="50%" stop-color="#1c1b4b"/>
+      <stop offset="100%" stop-color="#2f3c85"/>
+    </linearGradient>
+    <linearGradient id="intel-graph" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#74fafd"/>
+      <stop offset="100%" stop-color="#17bebb"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" rx="32" fill="url(#intel-bg)"/>
+  <rect x="60" y="50" width="480" height="260" rx="24" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <rect x="90" y="90" width="120" height="180" rx="18" fill="rgba(14,213,216,0.15)" stroke="rgba(116,250,253,0.6)"/>
+  <rect x="240" y="90" width="120" height="180" rx="18" fill="rgba(14,213,216,0.15)" stroke="rgba(116,250,253,0.6)"/>
+  <rect x="390" y="90" width="120" height="180" rx="18" fill="rgba(14,213,216,0.15)" stroke="rgba(116,250,253,0.6)"/>
+  <g fill="url(#intel-graph)">
+    <rect x="110" y="220" width="20" height="30" rx="5"/>
+    <rect x="140" y="200" width="20" height="50" rx="5"/>
+    <rect x="170" y="160" width="20" height="90" rx="5"/>
+    <rect x="200" y="140" width="20" height="110" rx="5"/>
+    <rect x="260" y="210" width="25" height="40" rx="6"/>
+    <rect x="295" y="170" width="25" height="80" rx="6"/>
+    <rect x="330" y="130" width="25" height="120" rx="6"/>
+    <circle cx="420" cy="200" r="34" />
+    <circle cx="465" cy="160" r="18" />
+    <circle cx="450" cy="240" r="22" />
+  </g>
+  <g stroke="#74fafd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M420 200 L465 160"/>
+    <path d="M420 200 L450 240"/>
+    <path d="M465 160 L510 130"/>
+  </g>
+  <g fill="#d9dbff" font-family="Outfit, Arial" font-weight="600" font-size="24">
+    <text x="95" y="75">weekly metrics</text>
+    <text x="370" y="75">insight network</text>
+  </g>
+</svg>

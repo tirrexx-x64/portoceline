@@ -1,52 +1,70 @@
-## Deploying on Railway (GitHub Workflow)
+## Deploying This Django App on Railway
+
+Below is a practical checklist of everything you need to prepare before pointing Railway at this repo, followed by the exact steps inside the Railway dashboard.
+
+### 0. Project preparation (do these in the repo)
+1. **Dependencies**  
+   - Ensure `gunicorn`, `dj-database-url`, and (optionally) `whitenoise` are listed in `requirements.txt`.  
+   - Install them locally and confirm `pip freeze` matches the file.
+2. **Settings adjustments**  
+   - Update `portfolio/settings.py` so `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`, and `DATABASES` read from environment variables using `dj_database_url`.  
+   - If you added WhiteNoise, include `WhiteNoiseMiddleware`, `STATIC_ROOT`, and `STATICFILES_STORAGE`.
+3. **Procfile**  
+   - Create a `Procfile` in the repo root with `web: gunicorn portfolio.wsgi --log-file -`. Railway will pick this up automatically.
+4. **Static assets**  
+   - Run `python manage.py collectstatic --noinput` locally to make sure the configuration works before letting Railway execute it.
+5. **Secrets & env template**  
+   - Optionally add a `.env.example` with all the environment keys you plan to create on Railway (no real secrets).
+
+Once the repo has those pieces committed and pushed to GitHub, move on to the platform.
 
 ### 1. Prerequisites
-- Railway account + CLI (`npm i -g @railway/cli`) or just the dashboard.
-- Repository pushed to GitHub (Railway pulls from GitHub). Ensure `Procfile`, `requirements.txt`, `manage.py`, and `portfolio/settings.py` are in root.
-- Managed Postgres database (Railway plugin works great).
+- Railway account + optional CLI (`npm i -g @railway/cli`).
+- GitHub repo containing this project.
+- A Postgres database (Railway plugin is easiest).
 
 ### 2. Configure Railway project
-1. In Railway dashboard click **New Project → Deploy from GitHub Repo** and select this repository.
-2. After first build finishes, add the **PostgreSQL** plugin and attach it to the same service. Railway injects `DATABASE_URL` automatically.
-3. In the service → **Variables** tab, set:
+1. In the dashboard choose **New Project → Deploy from GitHub Repo** and pick this repository.
+2. After the first build, add the **PostgreSQL** plugin and attach it to the same service. Railway injects `DATABASE_URL`.
+3. Under **Variables**, create:
 
 | Variable | Example |
 | --- | --- |
-| `DJANGO_SECRET_KEY` | `python -c "import secrets; print(secrets.token_urlsafe(64))"` |
+| `DJANGO_SECRET_KEY` | Output of `python -c "import secrets; print(secrets.token_urlsafe(64))"` |
 | `DJANGO_DEBUG` | `False` |
 | `DJANGO_ALLOWED_HOSTS` | `myapp.up.railway.app,mydomain.com` |
 | `DJANGO_CSRF_TRUSTED_ORIGINS` | `https://myapp.up.railway.app,https://mydomain.com` |
-| `EMAIL_*` | Optional SMTP creds |
-| `DATABASE_SSL_REQUIRE` | `True` (Railway Postgres is SSL-enabled) |
+| `DATABASE_SSL_REQUIRE` | `True` (for Railway Postgres) |
+| `EMAIL_*` | Only if the contact form should send email |
 
-Railway also exposes `RAILWAY_PUBLIC_DOMAIN`; settings automatically allow it if you leave `DJANGO_ALLOWED_HOSTS` empty.
+Railway sets `RAILWAY_PUBLIC_DOMAIN` automatically; you can include it inside `DJANGO_ALLOWED_HOSTS` if desired.
 
 ### 3. Build & run commands
-- Railway auto-detects Python via `requirements.txt`.
-- `Procfile` already sets the start command: `web: gunicorn portfolio.wsgi --log-file -`.
-- Add a build command in the dashboard (Service → Deployments → Settings → Build → `python manage.py collectstatic --noinput`) so static assets are prepared before each release.
+- Railway reads `requirements.txt` to install dependencies.
+- The `Procfile` tells Railway to start Gunicorn.
+- Configure the build command under **Deployments → Settings → Build Command**:  
+  `python manage.py collectstatic --noinput`
 
 ### 4. Database migrations
-Once the service is running and `DATABASE_URL` is available:
+After the service is up and `DATABASE_URL` exists:
 ```bash
-railway link          # run locally once
-railway variables     # confirm env vars
+railway link               # one-time link between CLI and project
 railway run python manage.py migrate
 ```
-That executes migrations inside the remote container against the managed Postgres instance.
+This executes migrations inside Railway’s environment against the hosted Postgres.
 
-### 5. Custom domain
-1. Under the service’s **Domains** tab, click **Add Domain** → type `yourdomain.com`.
-2. Railway shows the required CNAME/A record. Create it at your registrar (Namecheap, Cloudflare, etc.).
-3. After DNS propagates, Railway issues HTTPS certificates. Add the same hostname to `DJANGO_ALLOWED_HOSTS` & `DJANGO_CSRF_TRUSTED_ORIGINS`.
+### 5. Custom domain (optional)
+1. Open the service → **Domains** → **Add Domain** → enter `yourdomain.com`.
+2. Railway reveals the DNS record (CNAME/A). Add it at your registrar (Cloudflare, Namecheap, etc.).
+3. Once DNS propagates, Railway issues HTTPS certificates. Remember to include the domain inside `DJANGO_ALLOWED_HOSTS` and `DJANGO_CSRF_TRUSTED_ORIGINS`.
 
-### 6. Local development parity
-Create a `.env` (not committed) for local testing:
-```
-DJANGO_DEBUG=True
-DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
-DATABASE_URL=sqlite:///db.sqlite3
-```
-Run `python manage.py collectstatic --noinput` before pushing if you want to mirror production’s static workflow.
+### 6. Local parity tips
+- Maintain a `.env` locally:
+  ```
+  DJANGO_DEBUG=True
+  DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+  DATABASE_URL=sqlite:///db.sqlite3
+  ```
+- Run `python manage.py collectstatic --noinput` and `python manage.py migrate` locally before pushing to avoid surprises.
 
-With these steps you only need to push to GitHub; Railway rebuilds & redeploys automatically, and your custom domain + Postgres stay wired up.
+When these preparations are finished, you can simply push to GitHub; Railway will rebuild and redeploy automatically using the exact configuration described above.

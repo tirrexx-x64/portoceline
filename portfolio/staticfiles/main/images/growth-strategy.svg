@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="growth-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b061e"/>
+      <stop offset="45%" stop-color="#8a174f"/>
+      <stop offset="100%" stop-color="#ff793f"/>
+    </linearGradient>
+    <linearGradient id="growth-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe29a"/>
+      <stop offset="100%" stop-color="#ff5f6d"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" rx="32" fill="url(#growth-bg)"/>
+  <path d="M70 290h460" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M120 290c0-80 60-150 140-150s140 80 220 80" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-dasharray="6 12" fill="none"/>
+  <path d="M90 260 L200 180 L290 210 L380 140 L470 180" stroke="rgba(255,255,255,0.2)" stroke-width="4" fill="none"/>
+  <path d="M90 250 L200 190 L290 220 L380 150 L470 200" stroke="url(#growth-line)" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M470 200 l40 -20 l-12 60z" fill="#fff3c2" stroke="#ff5f6d" stroke-width="4"/>
+  <g fill="#fff3c2">
+    <circle cx="200" cy="190" r="10"/>
+    <circle cx="290" cy="220" r="10"/>
+    <circle cx="380" cy="150" r="10"/>
+    <circle cx="470" cy="200" r="12"/>
+  </g>
+  <g fill="#ffe8cf" font-family="Fraunces, 'Times New Roman', serif" font-size="48" font-weight="600">
+    <text x="90" y="120">Story</text>
+    <text x="230" y="120"> →</text>
+    <text x="300" y="120"> Signal</text>
+    <text x="480" y="120"> →</text>
+    <text x="360" y="75">Scale</text>
+  </g>
+</svg>
