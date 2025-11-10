@@ -212,7 +212,32 @@
             </div>
             <div class="timeline">
                 <div class="timeline-label">Professional Experience</div>
-
+                {% for experience in experiences %}
+                <article class="timeline-item reveal">
+                    <div class="timeline-header">
+                        <span class="timeline-date">{{ experience.start_date|date:"M Y" }}{% if experience.end_date %} – {{ experience.end_date|date:"M Y" }}{% else %} – Present{% endif %}</span>
+                        <span class="timeline-meta">{{ experience.organization }}</span>
+                    </div>
+                    <div class="timeline-body">
+                        {% if experience.image %}
+                        <div class="timeline-logo">
+                            <img src="{{ experience.image.url }}" alt="{{ experience.organization }} logo" style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        {% else %}
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #d4f1bb, #8bd897);">
+                            <span aria-hidden="true">{{ experience.organization|slice:":2"|upper }}</span>
+                            <span class="sr-only">Logo placeholder for {{ experience.organization }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="timeline-content">
+                            <h3>{{ experience.title }}</h3>
+                            <p class="timeline-role">{{ experience.role }}</p>
+                            <p class="timeline-duration">{{ experience.start_date|date:"M Y" }} – {% if experience.end_date %}{{ experience.end_date|date:"M Y" }}{% else %}Present{% endif %}</p>
+                            <p>{{ experience.description }}</p>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
                 <article class="timeline-item reveal">
                     <div class="timeline-header">
                         <span class="timeline-date">Apr 2025 – Present</span>
@@ -220,7 +245,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
-                            <img src="https://dummyimage.com/200x200/ffe08a/0d1f2d.png&text=ICMSS" alt="Indonesia Capital Market Student Studies logo">
+                            <span aria-hidden="true">ICMSS</span>
+                            <span class="sr-only">Logo placeholder for Indonesia Capital Market Student Studies</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Indonesia Capital Market Student Studies (ICMSS)</h3>
@@ -245,7 +271,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #d4f1bb, #8bd897);">
-                            <img src="https://dummyimage.com/200x200/d4f1bb/134e4a.png&text=MSS" alt="Management Student Society FEB UI logo">
+                            <span aria-hidden="true">MSS</span>
+                            <span class="sr-only">Logo placeholder for Management Student Society FEB UI</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Strategic Leader Candidate of Business Intelligence</h3>
@@ -266,7 +293,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #b3c7ff, #8897f5);">
-                            <img src="https://dummyimage.com/200x200/b3c7ff/1f2a6d.png&text=IMOTION" alt="IMOTION FEB UI logo">
+                            <span aria-hidden="true">IM</span>
+                            <span class="sr-only">Logo placeholder for IMOTION FEB UI</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Associate Team Leader of Public Relations</h3>
@@ -291,7 +319,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #f9a8d4, #f472b6);">
-                            <img src="https://dummyimage.com/200x200/f9a8d4/1f2937.png&text=TikTok" alt="TikTok logo placeholder">
+                            <span aria-hidden="true">TT</span>
+                            <span class="sr-only">Logo placeholder for TikTok content creation</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Social Media Marketing &amp; Content Strategy</h3>
@@ -311,7 +340,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fbcfe8, #f472b6);">
-                            <img src="https://dummyimage.com/200x200/fbcfe8/4a154b.png&text=KMK+UI" alt="Natal KMK UI 2024 logo">
+                            <span aria-hidden="true">KMK</span>
+                            <span class="sr-only">Logo placeholder for Natal KMK UI 2024</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Fundraising Staff</h3>
@@ -330,7 +360,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #bbf7d0, #34d399);">
-                            <img src="https://dummyimage.com/200x200/bbf7d0/0f172a.png&text=EPT" alt="LBI FIB UI English Proficiency Test logo">
+                            <span aria-hidden="true">EPT</span>
+                            <span class="sr-only">Logo placeholder for English Proficiency Test</span>
                         </div>
                         <div class="timeline-content">
                             <h3>English Proficiency Test (EPT)</h3>
@@ -347,7 +378,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #bae6fd, #38bdf8);">
-                            <img src="https://dummyimage.com/200x200/bae6fd/082f49.png&text=IELTS" alt="IELTS Academic logo">
+                            <span aria-hidden="true">IELTS</span>
+                            <span class="sr-only">Logo placeholder for IELTS Academic</span>
                         </div>
                         <div class="timeline-content">
                             <h3>IELTS Academic</h3>
@@ -366,7 +398,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fde68a, #f97316);">
-                            <img src="https://dummyimage.com/200x200/fde68a/7c2d12.png&text=PUAD" alt="President University Accounting Days logo">
+                            <span aria-hidden="true">PUAD</span>
+                            <span class="sr-only">Logo placeholder for President University Accounting Days</span>
                         </div>
                         <div class="timeline-content">
                             <h3>2nd Place – Accounting Competition, President University Accounting Days 2023</h3>
@@ -383,7 +416,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fef08a, #bef264);">
-                            <img src="https://dummyimage.com/200x200/fef08a/3b3a0f.png&text=KSPI" alt="KSPI Economy Competition logo">
+                            <span aria-hidden="true">KSPI</span>
+                            <span class="sr-only">Logo placeholder for KSPI Economy Competition</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Gold Medalist – KSPI 2023 Economy Competition</h3>
@@ -399,7 +433,8 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ddd6fe, #a855f7);">
-                            <img src="https://dummyimage.com/200x200/ddd6fe/1e1b4b.png&text=ECON" alt="National economics competitions logo placeholder">
+                            <span aria-hidden="true">HM</span>
+                            <span class="sr-only">Logo placeholder for national economics competitions</span>
                         </div>
                         <div class="timeline-content">
                             <h3>Honorable Mentions &amp; Finalist Recognition</h3>
