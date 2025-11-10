@@ -211,7 +211,10 @@
                 <h2>Celebrating leadership, creativity, and impact.</h2>
             </div>
             <div class="timeline">
-                <div class="timeline-label">Professional Experience</div>
+                <div class="timeline-label">
+                   
+                    Professional Experience
+                </div>
                 {% for experience in experiences %}
                 <article class="timeline-item reveal">
                     <div class="timeline-header">
@@ -221,7 +224,7 @@
                     <div class="timeline-body">
                         {% if experience.image %}
                         <div class="timeline-logo">
-                            <img src="{{ experience.image.url }}" alt="{{ experience.organization }} logo" style="width: 50px; height: 50px; object-fit: contain;">
+                            <img src="{{ experience.image.url }}" alt="{{ experience.organization }} logo">
                         </div>
                         {% else %}
                         <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #d4f1bb, #8bd897);">
@@ -244,9 +247,8 @@
                         <span class="timeline-meta">1 yr 2 mos with ICMSS</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
-                            <span aria-hidden="true">ICMSS</span>
-                            <span class="sr-only">Logo placeholder for Indonesia Capital Market Student Studies</span>
+                       <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
+                            <img src="https://static.wixstatic.com/media/f5a99a_ed00537ab80a4c22a28898e234de6eae~mv2.jpg" alt="ICMSS Logo" class="logo-img">
                         </div>
                         <div class="timeline-content">
                             <h3>Indonesia Capital Market Student Studies (ICMSS)</h3>
@@ -359,8 +361,8 @@
                         <span class="timeline-meta">Lembaga Bahasa Internasional FIB UI</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #bbf7d0, #34d399);">
-                            <span aria-hidden="true">EPT</span>
+                        <div class="timeline-logo">
+                            <img src="{% static 'main/images/certificate.svg' %}" alt="Certificate">
                             <span class="sr-only">Logo placeholder for English Proficiency Test</span>
                         </div>
                         <div class="timeline-content">
@@ -377,8 +379,8 @@
                         <span class="timeline-meta">IDP IELTS · Valid through Oct 2025</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #bae6fd, #38bdf8);">
-                            <span aria-hidden="true">IELTS</span>
+                        <div class="timeline-logo">
+                            <img src="{% static 'main/images/certificate.svg' %}" alt="Certificate">
                             <span class="sr-only">Logo placeholder for IELTS Academic</span>
                         </div>
                         <div class="timeline-content">
@@ -397,8 +399,8 @@
                         <span class="timeline-meta">President University</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fde68a, #f97316);">
-                            <span aria-hidden="true">PUAD</span>
+                        <div class="timeline-logo">
+                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
                             <span class="sr-only">Logo placeholder for President University Accounting Days</span>
                         </div>
                         <div class="timeline-content">
@@ -415,8 +417,8 @@
                         <span class="timeline-meta">Puskanas</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fef08a, #bef264);">
-                            <span aria-hidden="true">KSPI</span>
+                        <div class="timeline-logo">
+                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
                             <span class="sr-only">Logo placeholder for KSPI Economy Competition</span>
                         </div>
                         <div class="timeline-content">
@@ -432,8 +434,8 @@
                         <span class="timeline-meta">National Economics Competitions</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ddd6fe, #a855f7);">
-                            <span aria-hidden="true">HM</span>
+                        <div class="timeline-logo">
+                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
                             <span class="sr-only">Logo placeholder for national economics competitions</span>
                         </div>
                         <div class="timeline-content">
