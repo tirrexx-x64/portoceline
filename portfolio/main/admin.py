@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Experience, Achievement
+from .models import Experience, Achievement, Profile
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('tiktok_url',)
 
 @admin.register(Experience)
 class ExperienceAdmin(admin.ModelAdmin):

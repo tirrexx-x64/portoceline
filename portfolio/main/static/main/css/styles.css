@@ -224,6 +224,12 @@ a {
     z-index: 1;
 }
 
+.outfit-title {
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
 .hero-content,
 .hero-visual {
     position: relative;
@@ -957,6 +963,47 @@ a {
     color: var(--ui-muted);
 }
 
+.tiktok-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(255, 199, 0, 0.08);
+    border-radius: 12px;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(255, 199, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tiktok-handle:hover {
+    background: rgba(255, 199, 0, 0.15);
+    border-color: rgba(255, 199, 0, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 199, 0, 0.2);
+}
+
+.tiktok-handle a {
+    color: var(--ui-green);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.tiktok-handle a:hover {
+    color: var(--ui-navy);
+}
+
+.click-indicator {
+    font-size: 0.8rem;
+    color: var(--ui-yellow);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tiktok-handle:hover .click-indicator {
+    opacity: 1;
+    transform: translateX(2px);
+}
+
 .timeline-list {
     margin-top: 0.85rem;
     padding-left: 1.1rem;
@@ -1085,6 +1132,12 @@ textarea:focus {
     font-weight: 600;
     color: var(--ui-green);
     position: relative;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.05);
+    color: var(--ui-navy);
 }
 
 .social-links a::after {

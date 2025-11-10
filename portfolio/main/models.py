@@ -1,5 +1,11 @@
 from django.db import models
 
+class Profile(models.Model):
+    tiktok_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return "Profile"
+
 class Experience(models.Model):
     title = models.CharField(max_length=200)
     role = models.CharField(max_length=200)

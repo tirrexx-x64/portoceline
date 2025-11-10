@@ -7,7 +7,7 @@
     <title>Celine Aurel Asyela | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Lilita+One&family=Outfit:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
 </head>
 <body>
@@ -36,7 +36,7 @@
         <section id="home" class="hero section">
             <div class="hero-content">
                 <p class="hero-eyebrow">Product Designer &amp; Researcher</p>
-                <h1 class="hero-title">Crafting meaningful digital experiences with empathy and precision.</h1>
+                <h1 class="hero-title outfit-title">Crafting meaningful digital experiences with empathy and precision.</h1>
                 <p class="hero-subtitle">
                     Hi, I’m Celine – a UI/UX designer, storyteller, and lifelong learner from Universitas Indonesia,
                     passionate about weaving technology with human-centered design.
@@ -272,9 +272,8 @@
                         <span class="timeline-meta">Management Student Society FEB UI</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #d4f1bb, #8bd897);">
-                            <span aria-hidden="true">MSS</span>
-                            <span class="sr-only">Logo placeholder for Management Student Society FEB UI</span>
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
+                            <img src="https://yt3.googleusercontent.com/ytc/AIdro_mtvBRnFyiH7N26EfgY0DHAhHBNFgzkg5f3c_hhEYtr0xo=s900-c-k-c0x00ffffff-no-rj" alt="ICMSS Logo" class="logo-img">
                         </div>
                         <div class="timeline-content">
                             <h3>Strategic Leader Candidate of Business Intelligence</h3>
@@ -294,9 +293,8 @@
                         <span class="timeline-meta">IMOTION FEB UI · 1 yr 3 mos overall</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #b3c7ff, #8897f5);">
-                            <span aria-hidden="true">IM</span>
-                            <span class="sr-only">Logo placeholder for IMOTION FEB UI</span>
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
+                            <img src="https://imotion-febui.com/wp-content/uploads/2025/07/LOGO-THE-19TH-IMOTION.png" alt="ICMSS Logo" class="logo-img">
                         </div>
                         <div class="timeline-content">
                             <h3>Associate Team Leader of Public Relations</h3>
@@ -317,16 +315,27 @@
                 <article class="timeline-item reveal">
                     <div class="timeline-header">
                         <span class="timeline-date">Mar 2020 – Present</span>
-                        <span class="timeline-meta">TikTok Content Creator</span>
+                        <span class="timeline-meta">
+                            {% if profile.tiktok_url %}
+                                <a href="{{ profile.tiktok_url }}" target="_blank" rel="noopener">TikTok Content Creator</a>
+                            {% else %}
+                                TikTok Content Creator
+                            {% endif %}
+                        </span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #f9a8d4, #f472b6);">
-                            <span aria-hidden="true">TT</span>
-                            <span class="sr-only">Logo placeholder for TikTok content creation</span>
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
+                            <img src="https://img.freepik.com/premium-psd/tiktok-logo_705838-12827.jpg?semt=ais_hybrid&w=740&q=80" alt="ICMSS Logo" class="logo-img">
                         </div>
                         <div class="timeline-content">
                             <h3>Social Media Marketing &amp; Content Strategy</h3>
-                            <p class="timeline-duration">@celinecaaa · 11,000+ followers · 5 yrs 9 mos</p>
+                            <p class="timeline-duration">
+                                {% if profile.tiktok_url %}
+                                    <a href="{{ profile.tiktok_url }}" target="_blank" rel="noopener">@celinecaaa</a> · 11,000+ followers · 5 yrs 9 mos
+                                {% else %}
+                                    @celinecaaa · 11,000+ followers · 5 yrs 9 mos
+                                {% endif %}
+                            </p>
                             <ul class="timeline-list">
                                 <li>Producing personal TikTok content and partnering with diverse brands through short-form videos.</li>
                                 <li>Building the “celine L nya satu ◡̈” persona to deliver consistent, engaging storytelling.</li>
@@ -341,9 +350,8 @@
                         <span class="timeline-meta">Natal KMK UI 2024</span>
                     </div>
                     <div class="timeline-body">
-                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #fbcfe8, #f472b6);">
-                            <span aria-hidden="true">KMK</span>
-                            <span class="sr-only">Logo placeholder for Natal KMK UI 2024</span>
+                        <div class="timeline-logo" style="--logo-gradient: linear-gradient(135deg, #ffe08a, #ffb347);">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw8bFQJ9hbAd72I5CKKYjD3LqCMW9qWz6cxQ&s" alt="ICMSS Logo" class="logo-img">
                         </div>
                         <div class="timeline-content">
                             <h3>Fundraising Staff</h3>
@@ -362,7 +370,7 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo">
-                            <img src="{% static 'main/images/certificate.svg' %}" alt="Certificate">
+                            <img src="https://lbifib.ui.ac.id/sites/default/files/logo-lbifibui.png" alt="Certificate">
                             <span class="sr-only">Logo placeholder for English Proficiency Test</span>
                         </div>
                         <div class="timeline-content">
@@ -380,7 +388,7 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo">
-                            <img src="{% static 'main/images/certificate.svg' %}" alt="Certificate">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/IELTS_logo.svg/2560px-IELTS_logo.svg.png" alt="Certificate">
                             <span class="sr-only">Logo placeholder for IELTS Academic</span>
                         </div>
                         <div class="timeline-content">
@@ -400,7 +408,7 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo">
-                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
+                            <img src="https://bloguna.com/wp-content/uploads/2025/05/Logo-President-University-Format-PNG-1-scaled.png" alt="Trophy">
                             <span class="sr-only">Logo placeholder for President University Accounting Days</span>
                         </div>
                         <div class="timeline-content">
@@ -418,7 +426,7 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo">
-                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
+                            <img src="https://app.puskanas.id/assets/images/logo/logo.png" alt="Trophy">
                             <span class="sr-only">Logo placeholder for KSPI Economy Competition</span>
                         </div>
                         <div class="timeline-content">
@@ -435,7 +443,7 @@
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-logo">
-                            <img src="{% static 'main/images/trophy.svg' %}" alt="Trophy">
+                            <img src="https://e7.pngegg.com/pngimages/915/447/png-clipart-graphics-computer-icons-graphy-chart-economy-text-logo.png" alt="Trophy">
                             <span class="sr-only">Logo placeholder for national economics competitions</span>
                         </div>
                         <div class="timeline-content">
@@ -512,6 +520,9 @@
                             <li><a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a></li>
                             <li><a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a></li>
                             <li><a href="https://medium.com" target="_blank" rel="noopener">Medium</a></li>
+                            {% if profile.tiktok_url %}
+                            <li><a href="{{ profile.tiktok_url }}" target="_blank" rel="noopener">TikTok</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
