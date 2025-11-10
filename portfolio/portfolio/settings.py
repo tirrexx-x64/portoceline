@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
-import dj_database_url
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,37 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-def env_bool(name: str, default: bool = False) -> bool:
-    value = os.getenv(name)
-    return default if value is None else value.lower() in ("1", "true", "yes", "on")
-
-
-def env_list(name: str, default: list[str] | None = None) -> list[str]:
-    value = os.getenv(name)
-    if value:
-        return [item.strip() for item in value.split(",") if item.strip()]
-    return list(default or [])
-
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv(
-    'DJANGO_SECRET_KEY',
-    'django-insecure-r#t)9@#8-di!b=iw#n%^xs(!)4d&4h!=y^n0b9ab_=f31p&-cd',
-)
+SECRET_KEY = 'django-insecure-r#t)9@#8-di!b=iw#n%^xs(!)4d&4h!=y^n0b9ab_=f31p&-cd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env_bool('DJANGO_DEBUG', default=True)
+DEBUG = True
 
-default_hosts = ['127.0.0.1', 'localhost']
-railway_url = os.getenv('RAILWAY_PUBLIC_DOMAIN')
-if railway_url:
-    default_hosts.extend([railway_url, f'{railway_url}.railway.app'])
-
-ALLOWED_HOSTS = env_list('DJANGO_ALLOWED_HOSTS', default=default_hosts)
-CSRF_TRUSTED_ORIGINS = env_list(
-    'DJANGO_CSRF_TRUSTED_ORIGINS',
-    default=[f'https://{railway_url}'] if railway_url else [],
-)
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -69,7 +43,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -102,11 +75,10 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
-        conn_max_age=int(os.getenv('DB_CONN_MAX_AGE', '600')),
-        ssl_require=env_bool('DATABASE_SSL_REQUIRE', default=False),
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -144,21 +116,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = os.getenv('STATIC_URL', '/static/')
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'main' / 'static',
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_USE_FINDERS = True
 
 # Media files (User uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-USE_X_FORWARDED_HOST = True
-SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = not DEBUG
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
