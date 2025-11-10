@@ -713,6 +713,9 @@ a {
     display: grid;
     gap: clamp(1.25rem, 2.5vw, 1.75rem);
     border: 1px solid rgba(10, 37, 64, 0.06);
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
 }
 
 .timeline-item::before {
@@ -728,6 +731,19 @@ a {
     box-shadow: 0 0 0 0 rgba(255, 199, 0, 0.25);
     transform: scale(0.6);
     opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+}
+
+.timeline-item.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 26px 60px rgba(7, 21, 33, 0.18);
+}
+
+.timeline-item.in-view::before {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 6px rgba(255, 199, 0, 0.18);
 }
 
 .timeline-header {
@@ -757,6 +773,30 @@ a {
     display: flex;
     gap: clamp(1rem, 2.5vw, 1.5rem);
     align-items: start;
+}
+
+.timeline-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.35rem, 0.9vw, 0.65rem);
+    min-width: clamp(3.25rem, 4vw, 4.25rem);
+    min-height: clamp(3.25rem, 4vw, 4.25rem);
+    max-width: clamp(5.75rem, 8vw, 8rem);
+    max-height: clamp(4.75rem, 6.5vw, 5.75rem);
+    border-radius: 22px;
+    background: var(--logo-gradient, rgba(255, 255, 255, 0.92));
+    box-shadow: inset 0 0 0 1px rgba(10, 37, 64, 0.06), 0 10px 24px rgba(7, 21, 33, 0.14);
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+    transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+
+.timeline-item.in-view .timeline-logo {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.15s;
 }
 
 .timeline-logo-img {
@@ -797,23 +837,113 @@ a {
 }
 
 .timeline-logo img {
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     max-height: 100%;
     object-fit: contain;
+}
+
+.timeline-logo > span:not(.sr-only) {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: clamp(0.65rem, 1.4vw, 0.78rem);
+    color: var(--ui-dark);
+}
+
+.timeline-content h3,
+.timeline-content .timeline-role,
+.timeline-content .timeline-duration,
+.timeline-content > p,
+.timeline-content ul,
+.timeline-content .timeline-subrole {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .timeline-content h3 {
     font-size: clamp(1.1rem, 2.6vw, 1.45rem);
     margin-bottom: 0.35rem;
-    opacity: 0;
-    transform: translateX(-20px);
-    animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
-.timeline-content p, .timeline-content ul {
+.timeline-item.in-view .timeline-content h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.18s;
+}
+
+.timeline-content ul li {
     opacity: 0;
-    transform: translateX(-20px);
-    animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.timeline-item.in-view .timeline-content .timeline-role {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.24s;
+}
+
+.timeline-item.in-view .timeline-content .timeline-duration {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.28s;
+}
+
+.timeline-item.in-view .timeline-content > p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.32s;
+}
+
+.timeline-item.in-view .timeline-content ul {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.38s;
+}
+
+.timeline-item.in-view .timeline-content ul li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.in-view .timeline-content ul li:nth-child(1) {
+    transition-delay: 0.42s;
+}
+
+.timeline-item.in-view .timeline-content ul li:nth-child(2) {
+    transition-delay: 0.48s;
+}
+
+.timeline-item.in-view .timeline-content ul li:nth-child(3) {
+    transition-delay: 0.54s;
+}
+
+.timeline-item.in-view .timeline-content ul li:nth-child(4) {
+    transition-delay: 0.6s;
+}
+
+.timeline-item.in-view .timeline-content .timeline-subrole {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.46s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-item,
+    .timeline-item::before,
+    .timeline-logo,
+    .timeline-content h3,
+    .timeline-content .timeline-role,
+    .timeline-content .timeline-duration,
+    .timeline-content > p,
+    .timeline-content ul,
+    .timeline-content ul li,
+    .timeline-content .timeline-subrole {
+        transition: none !important;
+        animation: none !important;
+    }
 }
 
 .timeline-role {
